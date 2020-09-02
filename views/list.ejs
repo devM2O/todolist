@@ -1,0 +1,52 @@
+<%- include('header'); -%>
+<!-- to add header to all pages -->
+
+<body>
+
+  <div class="box" id="heading">
+    <h1><div class="title"><%= listTitle %></div> List</h1>
+  </div>
+
+
+  <div class="box">
+
+    <%  newlistItems.forEach(function (item) {  %>
+
+    <form action="/delete" method="post">
+      <div class="item">
+        <input type="checkbox" name="checkbox" value="<%= item._id %>" onChange="this.form.submit()">
+        <p> <%= item.name %></p>
+      </div>
+      <input type="hidden" name="listName" value="<%= listTitle %>">
+    </form>
+
+    <%  }); %>
+
+
+
+    <form action="/" method="post">
+      <input type="text" name="newList" placeholder="New Item" autocomplete="off">
+      <button type="submit" name="list" value="<%= listTitle %>">+</button>
+    </form>
+
+
+  </div>
+
+  <div class="box hideShow" id="heading">
+    <form action="/list" method="post" >
+      <input type="text" name="listName" class="aaa" placeholder="Add New List" autocomplete="off">
+      <button type="submit" name="button" class="b1">+</button>
+    </form>
+  </div>
+
+
+
+<script type="text/javascript">
+  var title = $(".title").html();
+  if(title != "Today"){
+    $(".hideShow").hide();
+  }
+</script>
+
+  <%- include('footer'); -%>
+  <!-- to add footer to all pages -->
