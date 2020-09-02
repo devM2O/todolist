@@ -167,7 +167,7 @@ app.post('/delete', function(req, res) {
 app.post('/list', function (req, res) {
   let listName = _.capitalize(req.body.listName);
 
-    // res.redirect("/" + listName);
+     res.redirect("/" + listName);
 
 });
 
@@ -181,3 +181,6 @@ if (port == null || port == "") {
 app.listen(port, function() {
   console.log("Server started Successfully");
 });
+
+//heroku link
+// https://cryptic-atoll-42457.herokuapp.com/
