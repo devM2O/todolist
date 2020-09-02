@@ -33,7 +33,7 @@ app.use(bodyParser.urlencoded({
 app.use(express.static("public"));
 
 
-//connect to modoDB and create database
+//connect to modoDB and create database    (mongodb://localhost:27017/todolistDB , this is for local)
 mongoose.connect("mongodb+srv://admin-minmaw:Test123@cluster0.7dwkq.mongodb.net/todolistDB", {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -167,11 +167,17 @@ app.post('/delete', function(req, res) {
 app.post('/list', function (req, res) {
   let listName = _.capitalize(req.body.listName);
 
-    res.redirect("/" + listName);
+    // res.redirect("/" + listName);
 
 });
 
-//port listen
-app.listen(3000, function() {
-  console.log("Server started on port 3000.");
+//port listen locally and heroku
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
+
+//port listen locally
+app.listen(port, function() {
+  console.log("Server started Successfully");
 });
